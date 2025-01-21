@@ -1,0 +1,182 @@
+html, body {height: 100%;}
+html { width: -webkit-fill-available !important;}
+
+.iconify {vertical-align: middle !important;}
+.grecaptcha-badge {z-index:11;}
+
+h1 {font-size: 2.25rem !important;}
+h2 {font-size: 1.875rem !important;}
+
+/*Design scrollbarów*/
+/* Scroll bar stylings */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: var(--lightestgrey);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* CSS dla zagnieżdżonych submenu */
+.dropdown-submenu .dropdown-menu {
+    left: 100%;
+    top: 0;
+    margin-left: .1rem;
+    margin-right: .1rem;
+}
+
+.app-container, footer {
+    margin-left: 18%;
+    width: calc(100% - 18%);
+}
+
+
+.img-bg {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.57), rgba(0, 0, 0, 0.57)), url("/images/bg1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.select2-container--default .select2-results__option {
+    color: #ffffff !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    color: #000000 !important;
+}
+
+.select2-container--default .select2-results__option[aria-selected="true"] {
+    background-color: #ff5722 !important;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color:#ff5722 !important;
+}
+
+.select2-search__field::-webkit-input-placeholder,
+.select2-search__field::placeholder {
+    color: #ffffff !important;
+}
+
+.select2-container--default .select2-results__group {
+    color: #ff5722 !important;
+}
+
+.picker__input:disabled, .picker__input:enabled {
+    background-color: #161717 !important;
+}
+
+.codeContainer {
+    border: 3px dashed #ff5722;
+    border-radius: 1.25rem;
+    padding: 20px;
+    padding-top: 27px;
+}
+
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    --bs-table-accent-bg: #2c3a47;
+}
+
+.table-striped >tbody >tr {
+    --bs-table-accent-bg: #425467;
+}
+
+.badge-status {
+    width: 120px;
+    font-size: 13px;
+    padding: 8px 15px 8px 15px;
+}
+
+.collapse {
+    visibility: visible !important;
+}
+
+
+.accordion-primary-solid .accordion-header {
+    /*background: #ff5722;*/
+    border-color: #ff5722;
+    color: #fff;
+    /*box-shadow: 0 -0.625rem 1.25rem 0 rgba(252, 46, 83, 0.15);*/
+    /*border-bottom-left-radius: 0;*/
+    /*border-bottom-right-radius: 0;*/
+}
+
+.accordion-primary-solid .accordion__body {
+    border: 2px solid #ff5722;
+    border-radius: 0 0 15px 15px;
+}
+
+.bg-primary-dark {background-color: var(--primary-dark) !important;}
+
+.bg-primary-dark:hover {background-color: #972d0d !important;}
+
+.textarea_editor {padding-top: 15px; padding-bottom:15px;}
+.badge-question {width: 200px;padding: 6px 0 6px 0; font-size: 14px;}
+
+.loading-opacity {
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+
+.table-dark-striped > tbody > tr {--bs-table-accent-bg: #383840;}
+.table-dark-striped > tbody > tr:nth-of-type(odd) {--bs-table-accent-bg: #2a2a35;}
+.table-dark-striped > thead > tr {--bs-table-accent-bg: #983914;}
+.table-dark-striped.last-green > tbody > tr:last-child {--bs-table-accent-bg: #2e572e;}
+.table-dark-striped.last-green > tbody > tr:last-child:hover {--bs-table-accent-bg: #437a43;}
+
+.select2-selection {border-color: var(--primary) !important; border-radius: 10px !important;}
+.select2-container--default .select2-search--inline .select2-search__field{
+    width:initial!important;
+}
+
+input[name="image"]::file-selector-button {
+    background: var(--primary);
+    color:white;
+    border:none;
+}
+
+input[name="image"]:hover::file-selector-button {
+    background: var(--primary-dark) !important;
+}
+
+/* Styl na hover dla optgroup */
+
+.select2-results__group:hover {
+    background-color: var(--primary); /* Tło na hover */
+    color: white !important;
+    cursor: pointer !important; /* Zmieniamy kursor na pointer */
+}
+
+.opacity-row > td > * {
+    opacity: 25%;
+}
+
+.opacity-row > td > div{
+    opacity:100% !important;
+}
+
+.bg-dark-own {
+    background-color: #161717!important;}
+
+.form-control::placeholder {
+    color: #bababa !important;
+}
+
+input.select2-search__field {
+    color: #bababa !important;
+}

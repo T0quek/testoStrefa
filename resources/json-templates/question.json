@@ -1,0 +1,48 @@
+{
+    "title": "Poprawna B",
+    "type":1,
+    "answers": [
+        "odpowiedź A",
+        "odpowiedź B",
+        "odpowiedź C",
+        "odpowiedź D"
+    ],
+    "correctAnswers": [0]
+}
+
+{
+    "title": "Tytuł pytania",
+    "type":2,
+    "answers": [
+        "odpowiedź A",
+        "odpowiedź B",
+        "odpowiedź C",
+        "odpowiedź D"
+    ],
+    "correctAnswers": [2,3]
+}
+
+{
+    "title": "Tresc pytania z [$] lukami do wypełnienia, np. [$], tutaj",
+    "type":3,
+    "answers": [
+        [
+            "odpowiedź A",
+            "odpowiedź B",
+            "odpowiedź C",
+            "odpowiedź D"
+        ],
+        [
+            "odpowiedź E",
+            "odpowiedź F",
+            "odpowiedź G",
+        ]
+    ],
+    "correctAnswers": [1,2]
+}
+
+{
+    "title": "Wstaw wartosc:",
+    "type":4,
+    "correctAnswers": ["3.15", "3,15"]
+}

@@ -1,0 +1,6 @@
+@media(max-width: 765px) {
+    .app-container {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+}
