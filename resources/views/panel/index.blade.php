@@ -6,6 +6,7 @@
     <link href="{{asset("vendor/owl-carousel/owl.carousel.css")}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset("vendor/nouislider/nouislider.min.css")}}">
 
+{{--    {{dd($firstMonth)}}--}}
 
     <div class="col-xl-12 mt-3">
         <div class="row">
@@ -20,11 +21,11 @@
                                 <div class="d-flex justify-content-between align-items-center flex-wrap">
                                     <div class="d-flex">
                                         <div class="d-inline-block position-relative donut-chart-sale mb-3">
-                                            <span class="donut1" data-peity='{ "fill": ["rgba(255,255,255,1)", "rgba(241, 103, 54, 1)"],   "innerRadius": 20, "radius": 15}'>28/274</span>
+                                            <span class="donut1" data-peity='{ "fill": ["rgba(255,255,255,1)", "rgba(241, 103, 54, 1)"],   "innerRadius": 20, "radius": 15}'>{{$passedExams}}/{{$failedExams}}</span>
                                         </div>
                                         <div class="ms-3">
                                             <h4 class="fs-24 font-w700 ">{{$allEndExams??"0"}}</h4>
-                                            <span class="fs-16 font-w400 d-block">Liczba rozwiązanych testów</span>
+                                            <span class="fs-16 text-gray-400 d-block">Liczba rozwiązanych testów</span>
                                         </div>
                                     </div>
                                     <div class="d-flex">
@@ -36,7 +37,7 @@
                                             </div>
                                             <div class="ms-3">
                                                 <h4 class="fs-24 font-w700 ">{{$passedExams??"0"}}</h4>
-                                                <span class="fs-16 font-w400 d-block">Zdanych</span>
+                                                <span class="fs-16 text-gray-400 d-block">Zdanych</span>
                                             </div>
                                         </div>
                                         <div class="d-flex">
@@ -48,7 +49,7 @@
                                             </div>
                                             <div class="ms-3">
                                                 <h4 class="fs-24 font-w700 ">{{$failedExams??"0"}}</h4>
-                                                <span class="fs-16 font-w400 d-block">Niezdanych</span>
+                                                <span class="fs-16 text-gray-400 d-block">Niezdanych</span>
                                             </div>
                                         </div>
                                     </div>
@@ -76,49 +77,45 @@
                                     <h4 class="fs-20 font-w700">Ostatnie egzaminy</h4>
                                 </div>
                                 <div>
-                                    <a href="javascript:void(0);" class="btn btn-outline-primary btn-rounded fs-18">Pełna historia</a>
+                                    <a href="{{route("panel.exams.history.index")}}" class="btn btn-outline-primary btn-rounded fs-18">Pełna historia</a>
                                 </div>
                             </div>
                             <div class="card-body px-0">
-                                <div class="d-flex justify-content-between recent-emails">
-                                    <div class="d-flex">
-                                        <div class="ms-3">
-                                            <h4 class="fs-18 font-w500">Kryptografia</h4>
-                                            <span class="font-w400 d-block">Jakis tam opis</span>
+                                @foreach($exams as $exam)
+                                    @php
+                                        $identifier = hash_hmac('sha256', $exam->id . env("APP_KEY"), config('app.key'));
+                                        $id = substr($identifier, 0, 10);
+                                    @endphp
+
+                                    <div class="d-flex justify-content-between recent-emails">
+                                        <div class="d-flex">
+                                            <div class="ms-3">
+                                                <h4 class="fs-18 font-w500">Egzamin {{$id}}</h4>
+                                                <span class="d-flex text-gray-400">{{$exam->updated_at}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="email-check">
+                                            <div class="d-flex align-items-center">
+                                                @switch($exam->status)
+                                                    @case(0)
+                                                        <a href="{{route("exam.show", ["identifier"=>$id])}}" class="btn btn-primary me-2">Kontynuuj</a>
+                                                    @break
+                                                    @case(1)
+                                                        <a class="btn btn-primary me-2 disabled" disabled>Kontynnuj</a>
+                                                    @break
+                                                    @case(2)
+                                                        <a class="btn btn-primary me-2 disabled" disabled>Wypełnij ponownie</a>
+                                                    @break
+                                                    @case(3)
+                                                        <a class="btn btn-primary me-2 disabled" disabled>Wypełnij ponownie</a>
+                                                    @break
+
+                                                @endswitch
+
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="email-check">
-                                        <div class="d-flex align-items-center">
-                                            <button class="btn btn-primary me-2">Kontynuuj</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-between recent-emails">
-                                    <div class="d-flex">
-                                        <div class="ms-3">
-                                            <h4 class="fs-18 font-w500">Radioamator</h4>
-                                            <span class="font-w400 d-block">Jakis tam opis</span>
-                                        </div>
-                                    </div>
-                                    <div class="email-check">
-                                        <div class="d-flex align-items-center">
-                                            <button class="btn btn-primary me-2">Wypełnij ponownie</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-between recent-emails">
-                                    <div class="d-flex">
-                                        <div class="ms-3">
-                                            <h4 class="fs-18 font-w500">Radioamator</h4>
-                                            <span class="font-w400 d-block">Jakis tam opis</span>
-                                        </div>
-                                    </div>
-                                    <div class="email-check">
-                                        <div class="d-flex align-items-center">
-                                            <button class="btn btn-primary me-2">Kontynuuj</button>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -130,8 +127,8 @@
                                         <div>
                                             <div class="">
                                                 <h2 class="fs-32 font-w700">{{$averageScore??"0%"}}</h2>
-                                                <span class="fs-18 font-w500 d-block">Średni wynik testu</span>
-                                                <span class="d-block fs-16 font-w400"><small class="text-danger">-2% </small>niż poprzednio</span>
+                                                <span class="fs-18 text-gray-400 d-block">Średni wynik testu</span>
+{{--                                                <span class="d-block fs-16 font-w400"><small class="text-danger">-2% </small>niż poprzednio</span>--}}
                                             </div>
                                         </div>
                                         <div id="wykres1"></div>
@@ -144,8 +141,8 @@
                                         <div>
                                             <div class="">
                                                 <h2 class="fs-32 font-w700">8</h2>
-                                                <span class="fs-18 font-w500 d-block">Testów tygodniowo</span>
-                                                <span class="d-block fs-16 font-w400"><small class="text-success">+2%</small> niż poprzednio</span>
+                                                <span class="fs-18 text-gray-400 d-block">Testów tygodniowo</span>
+{{--                                                <span class="d-block fs-16 font-w400"><small class="text-success">+2%</small> niż poprzednio</span>--}}
                                             </div>
                                         </div>
                                         <div id="wykres2"></div>
@@ -174,12 +171,26 @@
                 series: [
                     {
                         name: 'Zdane',
-                        data: [50, 18, 70, 40, 90, 70, 20],
+                        data: [
+                            {{$sixthMonth["passed"]}},
+                            {{$fifthMonth["passed"]}},
+                            {{$fourthMonth["passed"]}},
+                            {{$thirdMonth["passed"]}},
+                            {{$secondMonth["passed"]}},
+                            {{$firstMonth["passed"]}},
+                        ],
                         //radius: 12,
                     },
                     {
                         name: 'Niezdane',
-                        data: [80, 40, 55, 20, 45, 30, 80]
+                        data: [
+                            {{$sixthMonth["failed"]}},
+                            {{$fifthMonth["failed"]}},
+                            {{$fourthMonth["failed"]}},
+                            {{$thirdMonth["failed"]}},
+                            {{$secondMonth["failed"]}},
+                            {{$firstMonth["failed"]}},
+                        ]
                     },
 
                 ],
@@ -243,7 +254,14 @@
                 },
                 xaxis: {
                     position: 'bottom',
-                    categories: ['Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota', 'Niedziela'],
+                    categories: [
+                        "{{$sixthMonth["name"]}}",
+                        "{{$fifthMonth["name"]}}",
+                        "{{$fourthMonth["name"]}}",
+                        "{{$thirdMonth["name"]}}",
+                        "{{$secondMonth["name"]}}",
+                        "{{$firstMonth["name"]}}",
+                    ],
                     labels: {
                         style: {
                             colors: '#787878',
@@ -286,7 +304,8 @@
                 tooltip: {
                     y: {
                         formatter: function (val) {
-                            return "$ " + val + " thousands"
+                            // return "$ " + val + " thousands"
+                            return val;
                         }
                     }
                 },

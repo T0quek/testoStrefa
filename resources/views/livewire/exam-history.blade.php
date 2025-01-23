@@ -14,12 +14,7 @@
         <table class="table verticle-middle table-responsive-md table-dark-striped">
             <thead>
             <tr>
-                <th scope="col" wire:click="sortBy('id')" style="cursor: pointer;">
-                    #
-                    <span class="{{ $sortColumn == 'id' ? ($sortDirection == 'asc' ? 'text-primary' : 'text-info') : 'text-muted' }}">
-                            {{ $sortDirection == 'asc' && $sortColumn == 'id' ? '↑' : '↓' }}
-                        </span>
-                </th>
+                <th scope="col" style="cursor: pointer;">#</th>
                 <th scope="col" style="width: 5%; cursor: pointer;" wire:click="sortBy('average_score')">
                     Wynik
                     <span class="{{ $sortColumn == 'average_score' ? ($sortDirection == 'asc' ? 'text-primary' : 'text-info') : 'text-muted' }}">
@@ -46,7 +41,7 @@
             @unless($exams->isEmpty())
                 @foreach($exams as $exam)
                     <tr>
-                        <td><span>{{ $exam->id }}</span></td>
+                        <td><span>{{ $exam->identifier }}</span></td>
                         <td>
                             @if($exam->average_score>=0.5)
                                 <span class="badge light bg-green-800 !bg-opacity-45 !text-green-500 w-36 fs-5 py-2">{{($exam->average_score*100)." %"}}</span>
@@ -104,8 +99,9 @@
                                     </a>
                                 @else
                                     <a
+                                        disabled
                                         title="Rozpocznij taki sam"
-                                        class="d-inline-flex activeTooltip ms-1 badge light bg-green-800 !bg-opacity-45 hover:bg-green-900 !text-green-500 fs-2">
+                                        class="cursor-not-allowed opacity-50 disabled d-inline-flex activeTooltip ms-1 badge light bg-green-800 !bg-opacity-45 hover:bg-green-900 !text-green-500 fs-2">
                                         <i class="iconify" data-icon="carbon:renew"></i>
                                     </a>
                                 @endif

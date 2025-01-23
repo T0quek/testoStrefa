@@ -21,7 +21,7 @@ class ExamHistory extends Component
     protected $paginationTheme = 'bootstrap';
 
     public function mount() {
-        $this->total = Exam::with("examQuestions")->count();
+        $this->total = Exam::with("examQuestions")->where("creator_id", Auth::user()->id)->count();
     }
 
     public function performSearch(){$this->resetPage();}
